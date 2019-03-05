@@ -1,7 +1,7 @@
 
 # middleware-roadmap
 
- Basic knowledge of middleware research and development.
+ Basic knowledge of middleware research and development.以下为基础中间件研发路线图，随时更新。
 
 ## JAVA
 
@@ -33,5 +33,5 @@ Zero-copy
 
 ### RocketMQ
 
+## 据为己有系列
 
-以上为基础中间件研发路线图，随时更新。
