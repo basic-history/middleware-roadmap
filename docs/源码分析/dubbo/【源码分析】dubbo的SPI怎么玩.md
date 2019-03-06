@@ -58,7 +58,7 @@ hessian=com.alibaba.dubbo.rpc.protocol.hessian.HessianProtocol
 
 `@SPI("dubbo")`说的是，通过SPI机制来提供实现类，实现类是通过dubbo作为默认key去配置文件里找到的，配置文件名称与接口全限定名一样的，通过dubbo作为key可以找到默认的实现了就是com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol。
 
-dubbo的默认网络通信协议，就是dubbo协议，用的DubboProtocol。
+dubbo的默认网络通信协议，就是dubbo协议，用的DubboProtocol
 
 
 ### 实现分析
