@@ -8,11 +8,11 @@
 
 维护一个固定大小的单向链表，保证热数据永远在最后
  
-1. 新增的元素增加到链表的末尾，如果空间不足则删除第一个元素节点后再增加
+1.新增的元素增加到链表的末尾，如果空间不足则删除第一个元素节点后再增加
 
-2. 修改的元素移动到末尾，并删除原节点
+2.修改的元素移动到末尾，并删除原节点
  
-3. 查找时如果之前已经有这个元素，则移动到末尾
+3.查找时如果之前已经有这个元素，则移动到末尾
 
 具体的实现可参考笔者以前写的[单向链表实现](https://github.com/pleuvoir/Data-Structure-and-Algorithms/blob/master/source/data-structure-and-algorithms/src/main/java/io/github/pleuvoir/datasructure/linkedlist/Lru.java)
 
@@ -77,9 +77,9 @@ public void fun2() throws Exception {
 	accessOrderTrue.get("3"); 
 	System.out.println("获取了数据"+accessOrderTrue); 
 } 
-	//控制台输出 
-	acessOrderTure{1=1, 2=2, 3=3, 4=4} 
-	获取了数据{1=1, 4=4, 2=2, 3=3}
+//控制台输出 
+acessOrderTure{1=1, 2=2, 3=3, 4=4} 
+获取了数据{1=1, 4=4, 2=2, 3=3}
 ```
 
 基于如上的两种特性，我们就可以快速的实现自己的LRUCache。
