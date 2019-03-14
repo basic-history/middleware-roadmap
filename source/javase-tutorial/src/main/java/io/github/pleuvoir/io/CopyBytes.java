@@ -14,7 +14,7 @@ import java.io.IOException;
 public class CopyBytes {
 
 	// 使用绝对路径
-	static String filepath = "D:\\03 space\\01 git\\middleware-roadmap\\source\\javase-tutorial\\src\\main\\java\\resources\\";
+	static String filepath = "D:\\03 space\\01 git\\middleware-roadmap\\source\\javase-tutorial\\src\\main\\resources\\";
 	
 	public static void main(String[] args) throws IOException {
 		
