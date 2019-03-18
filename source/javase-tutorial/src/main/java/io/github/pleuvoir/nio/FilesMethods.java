@@ -7,6 +7,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Set;
 
 import io.github.pleuvoir.io.CopyBytes;
 
@@ -22,7 +23,7 @@ import io.github.pleuvoir.io.CopyBytes;
  * <p>
  *
  */
-public class FilesOps {
+public class FilesMethods {
 
 	public static void main(String[] args) throws IOException {
 		checkExist();
@@ -32,6 +33,8 @@ public class FilesOps {
 		deleteIfExists();
 		copy();
 		move();
+		
+		createTemp();
 	}
 
 	// 检查是否存在
@@ -105,6 +108,12 @@ public class FilesOps {
 			e.printStackTrace();
 			System.out.println("移动失败");
 		}
+	}
+	
+	// 创建临时文件
+	private static void createTemp() throws IOException {
+		Path tempFile = Files.createTempFile(null, ".app");
+		System.out.format("The temporary file" + " has been created: %s%n", tempFile);
 	}
 	
 }

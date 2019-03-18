@@ -9,7 +9,7 @@ import java.nio.file.Paths;
  * Path 使用
  *
  */
-public class PathOps {
+public class PathMethods {
 
 	
 	public static void main(String[] args) {
