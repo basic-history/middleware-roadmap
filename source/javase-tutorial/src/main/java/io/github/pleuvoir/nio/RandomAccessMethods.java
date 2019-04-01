@@ -32,8 +32,8 @@ public class RandomAccessMethods {
    */
 	private static void readAndWrite() throws IOException {
 
-		ByteBuffer data = ByteBuffer.wrap("hello world\r".getBytes()); // 包装为bb
-		ByteBuffer copy = ByteBuffer.allocate(3); // 1个字节
+		ByteBuffer data = ByteBuffer.wrap("hello world\n".getBytes()); // 包装为bb
+		ByteBuffer copy = ByteBuffer.allocate(300); 
 
 		
 		try(
@@ -41,10 +41,10 @@ public class RandomAccessMethods {
 						StandardOpenOption.WRITE);){
 			int nread;
 			do {
-				nread = fc.read(copy);  //从通道读取字节到缓冲区，读取完毕通道的postion也会随之移动
+				nread = fc.read(copy);  //从通道读取字节到缓冲区，读取完毕通道的portion也会随之移动
 			} while (nread != -1 && copy.hasRemaining());
 			
-			// 以上先读取最多12个字节到copy中，接下来我们移动指针到文件开头，并加上 hello world
+			// 以上先读取最多n个字节到copy中，接下来我们移动指针到文件开头，并加上 hello world
 			
 			fc.position(0);  //移动到开头为了写数据
 			while (data.hasRemaining()) {
@@ -67,4 +67,8 @@ public class RandomAccessMethods {
 		}
 		
 	}
+	
+	
+	
+	
 }

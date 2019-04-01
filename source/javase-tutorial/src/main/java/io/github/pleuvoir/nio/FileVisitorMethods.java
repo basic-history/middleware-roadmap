@@ -63,7 +63,7 @@ public class FileVisitorMethods {
         byte[] bytes = Files.readAllBytes(Paths.get(CopyBytes.filepath + "Apache-LICENSE"));
         ByteBuffer licenseBuf = ByteBuffer.wrap(bytes);
 
-        ByteBuffer srcBuf = ByteBuffer.allocate(1024 * 15); //15k
+        ByteBuffer srcBuf = ByteBuffer.allocate(1024 * 150); //150k
         try (FileChannel fc = FileChannel.open(target, StandardOpenOption.READ, StandardOpenOption.WRITE)) {
             int read;
             do {
@@ -76,6 +76,7 @@ public class FileVisitorMethods {
             }
             // 移动指针到文件末尾 追加原始内容
             fc.position(fc.size() - 1);
+            srcBuf.flip(); //翻转，即如果之前设置的limit=12,postion=5 翻转后postion=0,limit=5
             while (srcBuf.hasRemaining()) {
                 fc.write(srcBuf);
             }
