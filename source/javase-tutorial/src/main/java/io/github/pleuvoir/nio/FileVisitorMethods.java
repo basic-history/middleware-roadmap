@@ -63,7 +63,7 @@ public class FileVisitorMethods {
         byte[] bytes = Files.readAllBytes(Paths.get(CopyBytes.filepath + "Apache-LICENSE"));
         ByteBuffer licenseBuf = ByteBuffer.wrap(bytes);
 
-        ByteBuffer srcBuf = ByteBuffer.allocate(1024 * 150); //15k
+        ByteBuffer srcBuf = ByteBuffer.allocate(1024 * 150); //150k
         try (FileChannel fc = FileChannel.open(target, StandardOpenOption.READ, StandardOpenOption.WRITE)) {
             int read;
             do {
