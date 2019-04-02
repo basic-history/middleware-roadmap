@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 让一组线程到达某个屏障，然后一起开放，可以用来测试并行
  * 
- * <pre>为什么叫循环屏障？TOOD
+ * <pre>为什么叫循环屏障？因为在一个线程中可循环使用，注意：不要在多个线程中传递使用，那是无效的。</pre>
  *
  */
 public class CyclicBarrierTest {
@@ -24,9 +24,9 @@ public class CyclicBarrierTest {
 
 	public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
 
-		// 普通用法
+		// 普通用法可循环使用，注意不要再不同线程中用
 		for (int i = 0; i < 3; i++) {
-			new ExcuteThread().start();
+			new ExcuteThread("normal-" + i).start();
 		}
 
 		// 到达屏障前会执行BARRIER_WITH_TASK定义的内容
@@ -37,18 +37,26 @@ public class CyclicBarrierTest {
 	}
 
 	static class ExcuteThread extends Thread {
+		
+		public ExcuteThread(String name) {
+			super(name);
+		}
+
 		@Override
 		public void run() {
 			try {
 				if (new Random().nextBoolean()) {
-					System.out.println(getName() + " 运气不好，休息 2 秒");
 					TimeUnit.SECONDS.sleep(2);
 				}
 				System.out.println(getName() + " 到达屏障前");
 				BARRIER.await();
-				System.out.println(getName() + "准备休息 3 秒，然后一起出发");
 				TimeUnit.SECONDS.sleep(3);
-				System.out.println(getName() + " 到达位置");
+				System.out.println(getName() + " over");
+				
+				BARRIER.await();
+				TimeUnit.SECONDS.sleep(3);
+				System.out.println(getName() + " over again");
+				
 			} catch (InterruptedException | BrokenBarrierException e) {
 				e.printStackTrace();
 			}
@@ -60,12 +68,10 @@ public class CyclicBarrierTest {
 		public void run() {
 			try {
 				if (new Random().nextBoolean()) {
-					System.out.println(getName() + " 运气不好，休息 2 秒");
 					TimeUnit.SECONDS.sleep(2);
 				}
 				System.out.println(getName() + " 到达屏障前");
 				BARRIER_WITH_TASK.await();
-				System.out.println(getName() + "准备休息 3 秒，然后一起出发");
 				TimeUnit.SECONDS.sleep(3);
 				System.out.println(getName() + " 到达位置");
 			} catch (InterruptedException | BrokenBarrierException e) {
