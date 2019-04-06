@@ -1,4 +1,4 @@
-package io.github.pleuvoir.juc.interrupt;
+package io.github.pleuvoir.juc.basic.interrupt;
 
 import java.util.concurrent.TimeUnit;
 

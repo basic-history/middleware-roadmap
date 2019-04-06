@@ -1,4 +1,4 @@
-package io.github.pleuvoir.juc.join;
+package io.github.pleuvoir.juc.basic.join;
 
 public class TestClient {
 
