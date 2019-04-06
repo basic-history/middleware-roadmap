@@ -1,4 +1,4 @@
-package io.github.pleuvoir.juc.basic;
+package io.github.pleuvoir.juc.basic.waitnotify;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
