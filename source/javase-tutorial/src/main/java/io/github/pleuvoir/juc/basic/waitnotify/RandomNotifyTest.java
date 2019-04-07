@@ -4,7 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 演示线程的通知是从对象的等待队列随机选择
- *
+ * <br>
+ * 有很多个线程在这个对象上等待，会随机通知某个准备获取synchronized锁的线程
  */
 public class RandomNotifyTest {
 

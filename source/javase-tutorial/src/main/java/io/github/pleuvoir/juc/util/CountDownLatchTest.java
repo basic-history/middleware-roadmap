@@ -22,7 +22,7 @@ public class CountDownLatchTest {
 		}
 		
 		LATCH.await();  //可以多次使用等待方法，将在扣减完毕后一起释放
-		System.out.println("主线程执行了..");
+		System.out.println(System.currentTimeMillis() + " 主线程执行了..");
 		
 	}
 
@@ -49,7 +49,7 @@ public class CountDownLatchTest {
 		public void run() {
 			try {
 				LATCH.await();
-				System.out.println("Worker..go");
+				System.out.println(System.currentTimeMillis() + " Worker..go");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

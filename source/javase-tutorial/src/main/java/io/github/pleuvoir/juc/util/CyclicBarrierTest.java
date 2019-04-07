@@ -74,7 +74,7 @@ public class CyclicBarrierTest {
 				BARRIER_WITH_TASK.await();
 				TimeUnit.SECONDS.sleep(3);
 				System.out.println(getName() + " 到达位置");
-			} catch (InterruptedException | BrokenBarrierException e) {
+			} catch (InterruptedException | BrokenBarrierException e) {  //BrokenBarrierException代表已经破损，可能无法等待所有线程齐全了
 				e.printStackTrace();
 			}
 		}

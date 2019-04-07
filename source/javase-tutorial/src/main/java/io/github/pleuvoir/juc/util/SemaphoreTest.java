@@ -15,7 +15,7 @@ public class SemaphoreTest implements Runnable {
 	public static void main(String[] args) {
 
 		SemaphoreTest semaphoreTest = new SemaphoreTest();
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 10; i++) {
 			new Thread(semaphoreTest).start();
 		}
 	}
@@ -25,7 +25,7 @@ public class SemaphoreTest implements Runnable {
 		try {
 			SA.acquire(); // 获取1个许可，如果不能获取到许可则会一直阻塞
 			TimeUnit.SECONDS.sleep(3);
-			System.out.println(Thread.currentThread().getName() + " go.");
+			System.out.println(System.currentTimeMillis() + Thread.currentThread().getName() + " go.");
 			SA.release(); // 归还1个许可
 		} catch (InterruptedException e) {
 			e.printStackTrace();
