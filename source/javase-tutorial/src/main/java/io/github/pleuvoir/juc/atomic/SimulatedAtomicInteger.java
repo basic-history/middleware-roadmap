@@ -21,7 +21,4 @@ public class SimulatedAtomicInteger extends SimulatedCAS {
 		}
 	}
 
-	public int get() {
-		return super.value;
-	}
 }
