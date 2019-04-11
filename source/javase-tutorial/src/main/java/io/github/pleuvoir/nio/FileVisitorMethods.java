@@ -1,11 +1,11 @@
 package io.github.pleuvoir.nio;
 
-import io.github.pleuvoir.io.CopyBytes;
-
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.file.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 /**
@@ -24,7 +24,7 @@ public class FileVisitorMethods {
     }
 
     private static void find() throws IOException {
-        String p = "D:\\03 space\\01 git\\middleware-roadmap\\source\\javase-tutorial\\src\\main\\java\\io\\github\\pleuvoir\\test";
+        String p = "D:\\03 space\\01 git\\middleware-roadmap\\source\\javase-tutorial\\src\\main\\java\\io\\github\\pleuvoir";
         Path path = Paths.get(p);
 		Files.walkFileTree(path, new ApacheLicenseFileVisitor());
     }
@@ -43,8 +43,6 @@ public class FileVisitorMethods {
            // System.out.println("当前访问的文件：" + file.getFileName());
             if(file.getFileName().toString().endsWith(".java")){
                 System.out.println("找到java文件：" + file);
-
-                writeLicense(file);
                 return FileVisitResult.CONTINUE;
             }
             return FileVisitResult.SKIP_SUBTREE;
@@ -58,29 +56,5 @@ public class FileVisitorMethods {
     }
 
 
-    private static void writeLicense(Path target) throws IOException {
-        // 读取协议
-        byte[] bytes = Files.readAllBytes(Paths.get(CopyBytes.filepath + "Apache-LICENSE"));
-        ByteBuffer licenseBuf = ByteBuffer.wrap(bytes);
-
-        ByteBuffer srcBuf = ByteBuffer.allocate(1024 * 150); //150k
-        try (FileChannel fc = FileChannel.open(target, StandardOpenOption.READ, StandardOpenOption.WRITE)) {
-            int read;
-            do {
-                read = fc.read(srcBuf);
-            } while (read != -1 && srcBuf.hasRemaining());
-
-            fc.position(0);  //移动到开头
-            while (licenseBuf.hasRemaining()) {  //写入协议
-                fc.write(licenseBuf);
-            }
-            // 移动指针到文件末尾 追加原始内容
-            fc.position(fc.size() - 1);
-            srcBuf.flip(); //翻转，即如果之前设置的limit=12,postion=5 翻转后postion=0,limit=5
-            while (srcBuf.hasRemaining()) {
-                fc.write(srcBuf);
-            }
-        }
-    }
 
 }
