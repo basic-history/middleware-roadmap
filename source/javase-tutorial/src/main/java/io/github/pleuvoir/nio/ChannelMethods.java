@@ -24,14 +24,18 @@ public class ChannelMethods {
 	}
 
 	private static void read() throws IOException {
-
 		try (SeekableByteChannel sbc = Files.newByteChannel(Paths.get(CopyBytes.filepath + "line-xanadu.txt"));) {
-			ByteBuffer buf = ByteBuffer.allocate(1024);  //分配大小 b，如果过小则读取的内容会有问题
-			while (sbc.read(buf) > 0) {
-				buf.rewind();
-				CharBuffer decode = StandardCharsets.UTF_8.decode(buf);
+			System.out.println("文件大小：" + sbc.size());
+			ByteBuffer buf = ByteBuffer.allocate(100);  //分配大小 ，如果过大会浪费内存
+			while (sbc.read(buf) > 0) { //将通道数据写入缓冲区，如果缓冲区过小则会循环多次，如果大小足够则一次
+				System.out.println("rewind before=" + buf); //[pos=43 lim=100 cap=100]
+				buf.rewind(); //需要重置pos，因为如果有第二次循环,limit已经满了 （这一步如果分配的内存不足则是必须的）
+				System.out.println("rewind after =" + buf);  //[pos=0 lim=100 cap=100]
+				CharBuffer decode = StandardCharsets.UTF_8.decode(buf); //这一步操作会移动pos
+				System.out.println("decode after =" + buf); //[pos=100 lim=100 cap=100]
 				System.out.println(decode);
-				buf.flip();
+				buf.flip();   //因为上面的decode改变了pos，所以需要重置为0，否则无法写入
+				System.out.println("flip after =" + buf); //[pos=0 lim=100 cap=100]
 			}
 		}
 	}
