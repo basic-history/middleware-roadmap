@@ -31,7 +31,7 @@ public class TestClassloaderGetUrl {
 					java.net.URL url = urls.nextElement();
 					
 					String sql = file2String(url);
-					System.out.println("发现文件。。" + sql);
+					System.out.println("发现文件。。" + url + "\n" + sql);
 				}
 			}
 		
