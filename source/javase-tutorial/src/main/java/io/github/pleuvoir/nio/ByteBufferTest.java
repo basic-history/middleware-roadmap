@@ -70,6 +70,21 @@ public class ByteBufferTest {
 		
 		wrap2.clear();
 		System.out.println("wrap2.clear()被清空了" + wrap2);
+		
+		
+		
+		//注意：bb转为string
+		
+		//我们有一个bb
+		ByteBuffer src = ByteBuffer.wrap("呵呵&^%".getBytes()); 
+		
+		//开始转换
+		byte[] bt = new byte[src.limit()];
+		
+		src.get(bt); //搞进去
+		String string = new String(bt);
+		System.out.println(string);
+		
 		//System.in.read();
 	}
 }
