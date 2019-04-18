@@ -44,7 +44,7 @@ public class RandomNotifyTest {
 		waitGetNameThread.setName("waitGetNameThread");
 		waitGetNameThread.start();
 
-		//改变名字并通知，会发现它是随机通知 正在等待获取对象锁的线程
+		//改变名字并通知，会发现它是随机通知正在等待获取对象锁的线程
 		new Thread(() -> {monitor.changeName("pleuvoir");}).start();
 	}
 
