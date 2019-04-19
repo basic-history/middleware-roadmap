@@ -11,7 +11,12 @@ public class EchoServerSocket {
 
 	public static void main(String[] args) throws IOException {
 
-		try (ServerSocket serverSocket = new ServerSocket(8000); Socket socket = serverSocket.accept();) {
+		try (
+				ServerSocket serverSocket = new ServerSocket(8000); 
+				Socket socket = serverSocket.accept(); //阻塞到连接建立
+				
+				) {
+			
 			System.out.println("echoServerSocket receive request at 8000.");
 
 				BufferedReader is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
