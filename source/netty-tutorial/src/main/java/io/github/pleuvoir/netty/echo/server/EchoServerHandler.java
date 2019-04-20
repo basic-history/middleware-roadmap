@@ -9,6 +9,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
 // 指明我这个 handler 可以在多个 channel 之间共享，意味这个实现必须是线程安全的。
+// 在ch.pipeline().addLast(echoServerHandler); 时可以使用同一个对象。如果没有@Sharable则会报错
+// 
 @Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 

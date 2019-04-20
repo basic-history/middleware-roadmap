@@ -10,6 +10,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.CharsetUtil;
 
 public class TCPServerTest {
 
@@ -25,11 +26,13 @@ public class TCPServerTest {
 				protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
 							System.out.println("接收到数据：" + msg.toString());
 							
-							byte[] dst = new byte[msg.readableBytes()];
+//							byte[] dst = new byte[msg.readableBytes()];
+//							
+//							msg.getBytes(msg.readerIndex(), dst);
+//							
+//							System.out.println("接收到数据：" + new String(dst));
 							
-							msg.getBytes(msg.readerIndex(), dst);
-							
-							System.out.println("接收到数据：" + new String(dst));
+							System.out.println(msg.toString(CharsetUtil.UTF_8));
 				}
 			});
 			

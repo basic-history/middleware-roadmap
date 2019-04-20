@@ -19,7 +19,7 @@ public class EchoServer {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("准备启动服务端 ...");
+		System.out.println("启动服务端 ...");
 		EchoServer echoServer = new EchoServer(9000);
 		echoServer.start();
 		System.out.println("服务端关闭 ...");
