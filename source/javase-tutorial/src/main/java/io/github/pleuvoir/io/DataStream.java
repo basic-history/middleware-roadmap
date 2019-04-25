@@ -24,9 +24,6 @@ public class DataStream {
 
 	static final String dataFile = CopyBytes.filepath + "invoicedata";
 
-	static final double[] prices = {19.99, 9.99, 15.99, 3.99, 4.99};
-	static final int[] units = {12, 8, 13, 29, 50};
-	static final String[] descs = {"Java T-shirt", "Java Mug", "Duke Juggling Dolls", "Java Pin", "Java Key Chain"};
 
 	public static void main(String[] args) throws IOException {
 		write();
@@ -38,10 +35,17 @@ public class DataStream {
 		DataOutputStream dos = null;;
 		try {
 			dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));
-			for (int i = 0; i < prices.length; i++) {
-				dos.writeDouble(prices[i]);
-				dos.writeInt(units[i]);
-				dos.writeUTF(descs[i]);
+			for (int i = 0; i < 5; i++) {
+				dos.writeDouble(1.00);
+				dos.writeInt(1);
+				dos.writeUTF("UTF你好");
+				
+				//写入下一个要读取的字节长度位
+				byte[] bytes = "byte[]你好".getBytes();
+				int length = bytes.length;
+				dos.writeInt(length);
+				dos.write(bytes);
+				
 				dos.writeUTF("\n");
 			} 
 		} finally {
@@ -53,19 +57,20 @@ public class DataStream {
 
 
 	private static void read() throws IOException {
-		
 		DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(dataFile)));
-		
 		try {
 			for(;;) {
-				double price = dis.readDouble();
-				int unit = dis.readInt();
-				String desc = dis.readUTF();
-				String n = dis.readUTF();
-				System.out.println(price);
-				System.out.println(unit);
-				System.out.println(desc);
-				System.out.println(n);
+				System.out.println(dis.readDouble());
+				System.out.println(dis.readInt());
+				System.out.println(dis.readUTF());
+				
+				int length = dis.readInt();
+				// 读取大小必须一样
+				byte[] b = new byte[length];
+				dis.readFully(b);  //   = readFully(b, 0, b.length); 
+				System.out.println(new String(b, "UTF-8"));
+				
+				System.out.println(dis.readUTF());
 			}
 		} catch (EOFException e) {
 		//	e.printStackTrace();
