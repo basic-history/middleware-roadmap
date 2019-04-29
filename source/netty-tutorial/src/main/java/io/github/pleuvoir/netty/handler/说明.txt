@@ -1,0 +1,9 @@
+
+inbound 每一个需要调用 ctx.fireChannelRead(msg);才能传递给下一个同类处理器
+
+outbound 每一个需要调用 ctx.write(msg, promise);才能传递给下一个同类处理器
+
+
+区别是： 
+ctx.channel().writeAndFlush(msg);  走完整链路
+ctx.writeAndFlush(msg);		找到上一个outbound进行处理 可以缩短路径
