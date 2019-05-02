@@ -8,6 +8,7 @@ import io.github.pleuvoir.netty.handler.in.InBoundHandlerC;
 import io.github.pleuvoir.netty.handler.out.OutBoundHandlerA;
 import io.github.pleuvoir.netty.handler.out.OutBoundHandlerB;
 import io.github.pleuvoir.netty.handler.out.OutBoundHandlerC;
+import io.github.pleuvoir.netty.handler.out.OutBoundHandlerD;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -35,7 +36,7 @@ public class NettyServer {
                         // inBound，处理读数据的逻辑链
                         ch.pipeline().addLast("in-A",new InBoundHandlerA());
                         ch.pipeline().addLast("in-B",new InBoundHandlerB());
-                        ch.pipeline().addLast("out-Te",new OutBoundHandlerB());
+                        ch.pipeline().addLast("out-D",new OutBoundHandlerD());
                         ch.pipeline().addLast("in-C",new InBoundHandlerC());
 
                         // outBound，处理写数据的逻辑链

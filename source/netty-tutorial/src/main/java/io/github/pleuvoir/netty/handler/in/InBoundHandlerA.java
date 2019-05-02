@@ -10,6 +10,7 @@ public class InBoundHandlerA extends ChannelInboundHandlerAdapter {
         System.out.println("InBoundHandlerA: " + msg);
         
         ctx.pipeline().remove("in-B");
+        System.out.println("移除了in-B");
         ctx.fireChannelRead(msg); //调用下一个handler
     }
 }
