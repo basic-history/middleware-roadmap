@@ -3,6 +3,7 @@ package io.github.pleuvoir.io;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,8 @@ public class ScanXan {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
+		System.out.println(System.getProperty("user.dir"));
+		System.out.println(Paths.get("").toAbsolutePath().normalize().toString());
 		scanRead();
 		System.out.println(scanSumDouble()); // 1.0
 		print();
