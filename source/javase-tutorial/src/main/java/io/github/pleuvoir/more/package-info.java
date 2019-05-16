@@ -1,7 +1,8 @@
 
 /**
  * 
- * GUAVA工具使用
+ * GUAVA工具使用<br>
+ * https://github.com/google/guava/wiki/NewCollectionTypesExplained#table 介绍了新的集合
  * @author pleuvoir
  *
  */
