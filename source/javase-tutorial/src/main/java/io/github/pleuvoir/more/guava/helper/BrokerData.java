@@ -1,4 +1,4 @@
-package io.github.pleuvoir.more.helper;
+package io.github.pleuvoir.more.guava.helper;
 
 import java.util.Objects;
 

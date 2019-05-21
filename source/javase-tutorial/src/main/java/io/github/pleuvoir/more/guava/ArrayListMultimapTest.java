@@ -1,9 +1,9 @@
-package io.github.pleuvoir.more;
+package io.github.pleuvoir.more.guava;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ArrayListMultimap;
 
-import io.github.pleuvoir.more.helper.BrokerData;
+import io.github.pleuvoir.more.guava.helper.BrokerData;
 
 /**
  * 

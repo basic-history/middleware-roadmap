@@ -6,4 +6,4 @@
  * @author pleuvoir
  *
  */
-package io.github.pleuvoir.more;
+package io.github.pleuvoir.more.guava;

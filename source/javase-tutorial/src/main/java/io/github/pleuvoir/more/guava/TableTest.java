@@ -1,4 +1,4 @@
-package io.github.pleuvoir.more;
+package io.github.pleuvoir.more.guava;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
