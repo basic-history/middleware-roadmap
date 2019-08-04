@@ -9,6 +9,8 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
 
 public class EchoServer {
 
@@ -46,7 +48,13 @@ public class EchoServer {
 						}
 					});
 				
+			//这里的sync保证channel初始化完成，即不为空，否则下面的f.channel().localAddress()可能会为null
 			ChannelFuture f = bootstrap.bind().sync();	// 绑定到端口，阻塞等待直到连接完成，这里 ChannelFuture 就像一个占位
+			f.addListener(new GenericFutureListener<Future<? super Void>>() {
+				@Override
+				public void operationComplete(Future<? super Void> future) throws Exception {
+				}
+			});
 			
 			f.channel().closeFuture().sync();	// 阻塞，直到 channel 关闭
 			 System.out.println(EchoServer.class.getName() +
