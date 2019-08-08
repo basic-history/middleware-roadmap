@@ -4,7 +4,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * CompletabledFuture 增强的future，这个类只有1.8有
@@ -14,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CompletabledFutureTest {
 
-	public static void main(String[] args) throws InterruptedException, ExecutionException {
+	public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
 
 		// 执行有返回值的future，不指定默认在ForkJoinPool.commonPool
 		CompletableFuture<Integer> supplyAsync = CompletableFuture.supplyAsync(() -> {
@@ -77,6 +79,31 @@ public class CompletabledFutureTest {
 		TimeUnit.SECONDS.sleep(3);
 		// 告知完成，
 		promise.complete("完成了");
+		
+		//等待一会，如果超时或者执行出现异常都会抛出异常，这个异常需要手动捕获
+		CompletableFuture<Object> promise2 = new CompletableFuture<Object>();
+		CompletableFuture.runAsync(() ->{
+			try {
+				
+				int nextInt = ThreadLocalRandom.current().nextInt(1,5);
+				TimeUnit.SECONDS.sleep(nextInt);
+			//	promise2.complete(nextInt);
+				
+			//	promise2.completeExceptionally(new RuntimeException("自定义异常"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		
+		Object result = null;
+		try {
+			result = promise2.get(1, TimeUnit.SECONDS);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("1秒过去了，结果result="+result);
+		
 	}
 
 }
