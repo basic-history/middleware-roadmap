@@ -5,8 +5,10 @@ package io.github.pleuvoir.more.twitter;
  * <p>
  * 64位中，第一位代表正负 0 + 1 -
  * <p>
- * | 的作用是位或运算，两个数对应的位上只要有一个是1就是1 ；~ 的作用是取反，所在的位 1变 0 0 变1
- * & 的作用是位与运算，都是1结果才是1，只要有一个0就是0
+ * & 的作用是位与运算，都是1结果才是1，只要有一个0就是0，求交集    yu
+ * | 的作用是位或运算，两个数对应的位上只要有一个是1就是1 ，求和集； huo
+ * ^ 求合集和交集的对称差集   yihuo 只有1和0 才会是1
+ * ~ 的作用是取反，所在的位 1变 0 0 变1  fei
  * @author pleuvoir
  * 
  */
@@ -37,6 +39,11 @@ public class BitsOptTest {
 				"Long.MAX_VALUE | Long.MIN_VALUE 的二进制		" + toBinaryString(Long.MAX_VALUE | Long.MIN_VALUE));
 		// 1111111111111111111111111111111111111111111111111111111111111111 其实就是-1
 
+		// 异或
+		System.out.println(
+				"Long.MAX_VALUE ^ Long.MIN_VALUE 的二进制		" + toBinaryString(Long.MAX_VALUE ^ Long.MIN_VALUE));
+		// 1111111111111111111111111111111111111111111111111111111111111111 其实就是-1
+		
 		// 取反，1变0，0变1
 		System.out.println("~Long.MAX_VALUE 的二进制				" + toBinaryString(~Long.MAX_VALUE));
 		
