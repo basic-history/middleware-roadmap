@@ -15,9 +15,10 @@ package io.github.pleuvoir.more.twitter;
 public class BitsOptTest {
 
 	public static void main(String[] args) {
-
+		
+			
 		// 转换为二进制
-		System.out.println("Long.MAX_VALUE 的二进制				" + toBinaryString(Long.MAX_VALUE));
+		System.out.println("Long.MAX_VALUE 的二进制				" +(Long.MIN_VALUE));
 		// 0111111111111111111111111111111111111111111111111111111111111111
 
 		System.out.println("5L 的二进制					" + toBinaryString(5L));

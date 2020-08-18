@@ -103,7 +103,7 @@ public class IdWorker {
 	}
 
 	/**
-	 * 机器心Id，使用hostadddress（IP地址）取余，获得的值最大为5个bit的最大值11111 = 31
+	 * 机器Id，使用hostadddress（IP地址）取余，获得的值最大为5个bit的最大值11111 = 31
 	 * 
 	 */
 	private static long workIdGen() {
